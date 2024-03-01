@@ -1,9 +1,6 @@
 # Load packages
 library(rvest)
-library(stringr)
 library(dplyr)
-library(lubridate)
-library(readr)
 library(httr)
 library(jsonlite)
 #-----------------------------------------------------------------
@@ -67,8 +64,3 @@ counties_dfCA <- parsed_dataCA$data$counties
 # median, though I would need to do more work to see why i would do FMR and not median
 
 
-
-
-
-
-)
