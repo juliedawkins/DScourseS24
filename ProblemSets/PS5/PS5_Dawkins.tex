@@ -1,0 +1,22 @@
+\documentclass[12pt]{article}
+\usepackage{graphicx} % Required for inserting images
+
+\title{Problem Set 5}
+\author{Julie Dawkins}
+\date{March 2024}
+
+\begin{document}
+
+\maketitle
+
+\section*{Problem 3 - Webscraping}
+This data lists 150 university towns. I am interested in studying homelessness in university towns, exploring links between enrollment, rent prices, and homelessness counts. This data is incomplete in its usefulness -- I need more data on the cities such as total population, number of students enrolled at the university, et cetera -- but it is a good starting point listing schools and their cities to help me find a more robust data set. 
+
+I did not use any online tutorials to help me scrape this but did use my own notes from class (specifically, the test.r file in which we scraped from Wikipedia). 
+\section*{Problem 4 - API}
+For this problem, I signed up for a Housing and Urban Development API in order to access Fair Market Rent (FMR) data for counties and metro-areas. FMR is defined as the 40th percentile in rent for a 1-to-4 bedroom unit in that county or metropolitan area. 
+
+I thought this data was very interesting and could be a very helpful way to quickly gather both "treated" data and controls for many regional areas. Examining the FMR for various regions yielded expected results -- e.g., the Tulsa and Oklahoma metro areas are more expensive than anywhere else in Oklahoma. 
+
+To gather this data, I needed to use the packages "httr" and "jsonlite". 
+\end{document}
