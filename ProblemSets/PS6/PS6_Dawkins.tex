@@ -1,0 +1,67 @@
+\documentclass[12pt]{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{fancyhdr}
+\usepackage{float}
+
+\title{Problem Set 6}
+\author{Julie Dawkins}
+\date{March 2024}
+
+\begin{document}
+
+\maketitle
+
+\section*{Section 1: Cleaning Data}
+For this homework, I examined in-depth the relationship between university enrollment and Fair Market Rents (the 40th percentile rent price in an area). I used 2017 data from Housing and Urban Development and data on college towns in a table in a 2016 Bloomberg article. 
+
+I had to take a multitude of steps to clean my data. I first recreated a useful table I found in a Bloomberg article but which, try as I might, I could not find the API access to; then, I downloaded the Fair Market Rent (FMR) information from Housing and Urban Development for each state with a school I am interested in investigating. I use 2017 data (the earliest possible) from HUD since the article with school enrollment and town population was published in 2016.
+
+To initially clean the FMR data, I removed extraneous words from the metropolitan name. This is so I could match by name more easily when merging with the college town data set.
+
+After I had the FMR data and college town enrollment and percent of population data, I performed a fuzzy merge based on the name of the city to merge the data and increased accuracy by making sure the state code in each data set was equal. For nearly every university, its town was considered a metropolitan area; however, this is not true of the University of Oklahoma (Norman might be considered part of the OKC metro area) and Virginia Tech (which is part of a three-city region in the HUD data). I drop OU and Virginia Tech. 
+
+Finally, I needed to create my variable of interest, which is aimed to investigate if the Fair Market Rent for a one bedroom unit is notably higher in the university town than the rest of the state's metropolitan areas. To create this variable, I grouped the data by state, excluded the metropolitan area matched with the college town, and average the one bedroom FMR for every other metropolitan area. Then, I create the "percent difference" variable to look at how much higher or lower the FMR is in a college town versus the state average. 
+
+\section*{Section 2: Visualizations}
+
+\section*{\small{Visual 1: Bar Chart}}
+For my first visualization, I sought to get an initial overview of how many school have higher or lower rents than average, and if so, the percent different. I created a bar chart, displayed below. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{bar_plot.png}
+    \caption{Percent Difference in Rent, College Town vs. State Metro Average}
+    \label{fig:enter-label}
+\end{figure}
+
+This chart shows that eight of the nine schools I am investigating have a higher-than-average rent. This is interesting starting information and indicates that my hypothesis might be worth looking deeper into. 
+
+\section*{\small{Visual 2: Rent vs. Enrollment}}
+For my second visualization, I examined a potential cause of the higher rents: demand from the student population. 
+
+This chart shows the percentage differences in the bar chart above with the number of enrolled students.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{enrollment-rent.png}
+    \caption{Enrollment vs. \% Diff. from Avg. Rent}
+    \label{fig:enter-label}
+\end{figure}
+
+This chart shows the percentage differences between the FMR one-bedroom rent in the college town vs. the average in the state visualized with the number of enrolled students. The dashed line represents a 0\% difference from the average FMR. Without the University of Michigan, a major outlier in the data, there is not a clear trend. The percentage difference in rent does not seem to be highly correlated with enrollment numbers, if at all. 
+
+\section*{\small{Visual 3: Rent vs. Student Percentage of Population}}
+
+For my final figure, I create a very similar chart to the second visualization, but this time I examine the effect of student population as a percent of the population on the resulting percent difference in average rent for a one-bedroom unit. As with enrollment, there does not seem to be a clear relationship between the percent of the population made up of students and the resulting \% difference in average rent. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{percentage-rent.png}
+    \caption{\% Student Population vs. \% Diff. from Avg. Rent}
+    \label{fig:enter-label}
+\end{figure}
+
+\section*{\small{Conclusions}}
+From all of these figures, I have gathered that though rent seems to be higher than average for college towns than other metropolitan areas within a state, my limited data set did not find the mechanism by which this increase occurs. It is possible with more than 9 observations a trend would become more obvious; or, alternatively, university enrollment/student population is not related to higher-than-average rents. 
+
+\end{document}
