@@ -1,0 +1,86 @@
+\documentclass[12pt]{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{siunitx}
+
+\title{PS7 Dawkins}
+\author{Julie Dawkins}
+\date{March 2024}
+
+\begin{document}
+
+\maketitle
+
+\section{Problem 6}
+
+Here is the table produced by the package modelsummary: 
+
+\begin{table}[H]
+\centering
+\begin{tabular}[t]{lrrrrrrr}
+\toprule
+  & Unique (\#) & Missing (\%) & Mean & SD & Min & Median & Max\\
+\midrule
+logwage & 670 & 25 & \num{1.6} & \num{0.4} & \num{0.0} & \num{1.7} & \num{2.3}\\
+hgc & 16 & 0 & \num{13.1} & \num{2.5} & \num{0.0} & \num{12.0} & \num{18.0}\\
+tenure & 259 & 0 & \num{6.0} & \num{5.5} & \num{0.0} & \num{3.8} & \num{25.9}\\
+age & 13 & 0 & \num{39.2} & \num{3.1} & \num{34.0} & \num{39.0} & \num{46.0}\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+25\% of logwage is missing. I believe this is most likely to be Missing Not at Random (MNAR). Wages are sensitive topics and individuals are not likely to randomly not report them. Although we can hypothesize their values based on other variables (age, tenure, education, etc.) we cannot fully know these values based on these variables.
+
+\section{Problem 7}
+
+The following is the result of the four types of regressions: 
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}[t]{lcccc}
+\toprule
+  & List-Wise Deletion & Mean Imputation & Predicted Values & Mice\\
+\midrule
+(Intercept) & \num{0.639}*** & \num{0.833}*** & \num{0.639}*** & \num{0.724}***\\
+ & (\num{0.146}) & (\num{0.115}) & (\num{0.111}) & (\num{0.135})\\
+hgc & \num{0.062}*** & \num{0.049}*** & \num{0.062}*** & \num{0.059}***\\
+ & (\num{0.005}) & (\num{0.004}) & (\num{0.004}) & (\num{0.006})\\
+collegenot college grad & \num{0.146}*** & \num{0.160}*** & \num{0.146}*** & \num{0.106}**\\
+ & (\num{0.035}) & (\num{0.026}) & (\num{0.025}) & (\num{0.033})\\
+tenure & \num{0.023}*** & \num{0.015}*** & \num{0.023}*** & \num{0.022}***\\
+ & (\num{0.002}) & (\num{0.001}) & (\num{0.001}) & (\num{0.002})\\
+age & \num{-0.001} & \num{-0.001} & \num{-0.001} & \num{-0.001}\\
+ & (\num{0.003}) & (\num{0.002}) & (\num{0.002}) & (\num{0.002})\\
+marriedsingle & \num{-0.024} & \num{-0.029}* & \num{-0.024}+ & \num{-0.019}\\
+ & (\num{0.018}) & (\num{0.014}) & (\num{0.013}) & (\num{0.018})\\
+\midrule
+Num.Obs. & \num{1669} & \num{2229} & \num{2229} & \\
+R2 & \num{0.195} & \num{0.132} & \num{0.268} & \\
+R2 Adj. & \num{0.192} & \num{0.130} & \num{0.266} & \\
+AIC & \num{1206.1} & \num{1129.3} & \num{961.2} & \\
+BIC & \num{1244.0} & \num{1169.3} & \num{1001.1} & \\
+Log.Lik. & \num{-596.049} & \num{-557.651} & \num{-473.584} & \\
+F & \num{80.508} & \num{67.496} & \num{162.884} & \\
+RMSE & \num{0.35} & \num{0.31} & \num{0.30} & \\
+\bottomrule
+\multicolumn{5}{l}{\rule{0pt}{1em}+ p $<$ 0.1, * p $<$ 0.05, ** p $<$ 0.01, *** p $<$ 0.001}\\
+\end{tabular}
+\end{center}
+\end{table}
+
+None of the $\hat{\beta}_1$s come very close to the true value of 0.093. However, List-Wise Deletion and Predicted Values come closer at 0.062, indicating a 6.2\% increase in wage for each additional year of schooling. Mean Imputation was the farthest with a $\hat{\beta}_1$ of 0.049, and the mice multiple imputation method was 0.059. 
+
+Based on the true value of $\hat{\beta}_1$, I conclude that list-wise deletion and using predicted values were the most accurate for this particular data set. They have the closest $\hat{\beta}_1$, and have the same $beta$s for every other variable (with differing standard errors). 
+
+The $\hat{\beta}_1$ for the predicted-value method is 0.062, the same as in list-wise deletion; for the mice method, it is 0.059. These are very similar values. The other $beta$s differ more dramatically, with college graduation having a lower impact in the mice method than the others as well as being married (though this variable is not significant in the mice method). 
+
+\section{Problem 8}
+
+I have not made it very far on my project. Though I downloaded data for the last two problem sets, I don't think I will be using the same data, as the easiest way to access robust data on the topic of homelessness/housing is to download excel files publicly available by HUD. 
+
+I will be looking at homelessness point-in-time counts (conducted by Continuums of Care, regional organizations that monitor homelessness); housing inventory counts; and median rent in a region, all gathered from Excel files from HUD. AmericanCommunities.Org has a map of 171 counties that have major universities; I could compile data from this list to get a more robust data set than the 9 that I used in my last dataset. It will just be a grind to get the relevant info, pulling information about college enrollment, 
+
+I don't know if I will find anything significant or even major differences in levels of homelessness between college-town counties and others, but I am interested in exploring the impact of students on homelessness and rents. I could conduct a simple OLS regression as well with either the number of homelessness or rents as my dependent variable.
+
+\end{document}
