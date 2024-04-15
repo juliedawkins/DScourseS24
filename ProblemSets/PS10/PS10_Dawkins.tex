@@ -1,0 +1,36 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{booktabs}
+\usepackage[margin=1in]{geometry}
+\usepackage{float}
+
+\title{PS10 Dawkins}
+\author{Julie Dawkins}
+\date{April 2024}
+
+\begin{document}
+
+\maketitle
+
+\section{Question 9}
+
+I have created a table showing the results of each of the tribes of learning. (Note that SVM, support vector machine, is absent; I could not get the code to run, but the code is still in my R file.)
+
+\begin{table}[H]
+  \centering
+  \caption{Model Performance Metrics}
+  \begin{tabular}[t]{llllllll}
+    \toprule
+    penalty & .estimate & alg & cost complexity & tree depth & min n & hidden units & neighbors\\\\
+    \midrule
+    0.00 & 0.853 & logit & & & & & \\\\
+    & 0.868 & tree model & 0.00 & 15.00 & 20.00 & & \\\\
+    0.00 & 0.838 & neural net & & & & 10.00 & \\\\
+    & 0.844 & k nearest neighbors & & & & & 28.00\\\\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+We can see that the estimate is all in the .8s for each model, but the logit and the tree model perform the best. The tree model has a roughly 0.87 (87\%) accuracy rate and was my highest, followed by the logist at approximately 85\% accuracy. Neural net and k nearest neighbors performed the worst for me, hovering around 84\%. 
+
+\end{document}
